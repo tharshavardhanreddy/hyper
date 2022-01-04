@@ -1,0 +1,85 @@
+<div class="container-fluid">
+    <app-header></app-header>
+    <!-- <div class="float-end" style="color: aliceblue; cursor: pointer">
+      <i class="fa fa-arrow-left fa-lg"></i>&nbsp; BACK
+    </div> -->
+    <div class="head text-center ">
+      <!-- <span class="float-end" style="color: aliceblue; cursor: pointer" (click)="locat()"><i class="fa fa-arrow-left fa-lg"></i></span> -->
+      <header class="ms-5">Booking Details</header>
+    </div>
+      <div class="alert alert-warning text-center " role="alert" *ngIf="errormessage">{{errormessage}}</div>  
+      
+       <div class="card text-center"> 
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-4">
+              <img src = "../../assets/images/pirate captain welcome pose 1.svg" height="200px" alt="My game SVG"/>
+              <div class="mt-2">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <p>Game Name</p>
+                    <p>No.of Persons</p>
+                    <p>Date</p>
+                    <p>Time Slot</p>
+                    <p>Status</p>
+                  </div>
+                  <div class="col-lg-6">
+                    <p>: {{bookingdata?.gamename}}</p>
+                    <p>: {{bookingdata?.noofpeople}}</p>
+                    <p>: {{bookingdata?.date}}</p>
+                    <p>: {{bookingdata?.slot}}</p>
+                    <p>: {{bookingdata?.status}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-8 text-center">
+                <h5 >Customer Name : {{cusdata?.name}}</h5>
+              <div class="mt-5">
+                <div class="row">
+                  <div class="col-lg-3">
+                    <p>Email ID </p>
+                  </div>
+                  <div class="col-lg-3">
+                    <P>: {{cusdata?.email}}</P>
+                  </div>
+                  <div class="col-lg-3">
+                    <P>Mobile</P>
+                  </div>  
+                  <div class="col-lg-3">
+                    <P>: {{cusdata?.mobile}}</P>
+                  </div>
+                </div>
+              </div>
+                <hr class="mb-4">
+                <h5 >Transaction Details</h5>
+                <div class="mt-5">
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <p>Transaction ID </p>
+                      <p>Booking ID </p>
+                    </div>
+                    <div class="col-lg-3">
+                      <P>: {{transdata?.transactionid}}</P>
+                      <P>: {{bookingdata?.id}}</P>
+                    </div>
+                    <div class="col-lg-3">
+                      <P>Mode of Payment</P>
+                      <p>Price</p>
+                    </div>  
+                    <div class="col-lg-3">
+                      <P>: {{transdata?.modeofpayment}}</P>
+                      <P style="color: rgb(62, 62, 248);">: {{transdata?.price}}</P>
+                    </div>
+                  </div>
+                </div>
+
+            <button class="btn btn-danger mt-5" (click)="locat()" >Back</button>
+          </div>
+        </div>
+      </div>
+
+</div>     
+
+
+</div>

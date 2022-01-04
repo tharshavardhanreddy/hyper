@@ -1,0 +1,63 @@
+<div class="container-fluid">
+  <app-header></app-header>
+  <div class="float-end" style="color: aliceblue; cursor: pointer">
+    <i class="fa fa-arrow-left fa-lg"></i>&nbsp; BACK
+  </div>
+  <div class="head text-center mt-5">
+    <header>CREATE NEW CUSTOMER</header>
+  </div>
+
+  <div class="alert alert-warning alert-dismissible fade show text-center" role="alert" *ngIf="errormessage">
+    <strong>Something went wrong!</strong>&nbsp; {{errormessage}}.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <div class="content text-center mt-5">
+    <div class="card text-center">
+      <div class="card-body text-center">
+        <form [formGroup]="customerForm" (ngSubmit)="onsubmit()">
+          <div class="input-group fontuser mb-3">
+            <input
+              type="text"
+              class="form-control input-sm"
+              placeholder=" FULL-NAME"
+              formControlName="name"
+            />
+            <small
+              *ngIf="customerFormcontrol.name.invalid && isSubmitted"
+              class="error"
+              >FULL-NAME is required
+            </small>
+          </div>
+          <div class="input-group mb-3 fontuser">
+            <input
+              type="text"
+              class="form-control input-sm"
+              placeholder=" MOBILE NUMBER"
+              formControlName="mobile"
+            />
+            <small
+              *ngIf="customerFormcontrol.mobile.invalid && isSubmitted"
+              class="error"
+              >MOBILE NUMBER is required
+            </small>
+          </div>
+          <div class="input-group fontuser">
+            <input
+              type="email"
+              class="form-control input-sm"
+              placeholder=" EMAIL-ID"
+              formControlName="email"
+            />
+            <small
+              *ngIf="customerFormcontrol.email.invalid && isSubmitted"
+              class="error"
+              >EMAIL-ID is required
+            </small>
+          </div>
+          <button class="btn btn-lg mt-5" type="submit">SUBMIT</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

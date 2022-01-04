@@ -1,0 +1,74 @@
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+  }
+  
+  .big-image {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-image: url("https://static.wixstatic.com/media/8d71f4_a3797af3637e45f794ff08df74b399d0~mv2_d_2048_2048_s_2.png/v1/fit/w_2500,h_1330,al_c/8d71f4_a3797af3637e45f794ff08df74b399d0~mv2_d_2048_2048_s_2.png"),url("../../assets/images/logo1.png");
+    opacity: 0.9;
+
+  }
+
+  .overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    /* background: rgba(0, 0, 0, 0.65); */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .form{
+      width: 35%;
+      margin-top: 25%;
+  }
+
+input{
+    border-radius: 30px;
+}
+
+.fontuser {
+    position: relative;
+}
+  
+.fontuser i{
+    position: absolute;
+    left: 15px;
+    top: 18px;
+    color: gray;
+}
+  
+.fontpassword {
+    position: relative;
+}
+  
+.fontpassword i{
+    position: absolute;
+    left: 15px;
+    top: 18px;
+    color: gray;
+}
+
+.btn{
+    color: whitesmoke;
+    background-color: black;
+    border-radius: 30px;
+    padding: 5px 50px;
+} 
+
+.error{
+    padding: 20px 20px;
+    background-color: tomato;
+    color: whitesmoke;
+  }

@@ -1,0 +1,53 @@
+<div class="container-fluid">
+    <app-header></app-header>
+    <div class="head text-center mt-2">
+      <span class="float-end" style="color: aliceblue; cursor: pointer" (click)="locat()"><i class="fa fa-arrow-left fa-lg"></i></span>
+      <header class="ms-5">List of Booking ID's</header>
+    </div>
+    <!-- <div class="card-body "> -->
+      <div class="alert alert-warning text-center " role="alert" *ngIf="errormessage">{{errormessage}}</div>
+    <!-- </div> -->
+
+    <div class="table100 ver5 m-b-110 text-center mt-2">
+      <div class="table100-head">
+        <table>
+          <thead>
+            <tr class="row100 head text-center" >
+              <!-- <th class="cell100 column1">Admin-ID</th> -->
+              <th class="cell100 column2">Ticket ID </th>
+              <th class="cell100 column3">Game Name</th>
+              <th class="cell100 column4">Date</th>
+              <th class="cell100 column3">Time Slot</th>
+              <th class="cell100 column4">status</th>
+              <th class="cell100 column5">Actions</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+  
+      <div class="table100-body js-pscroll" >
+        <table>
+          <tbody *ngFor="let item of bookings">
+            <tr class="row100 body text-center" >
+              <!-- <td class="cell100 column1">{{item.refid}}</td> -->
+              <td class="cell100 column2">{{item.id}}</td>
+              <td class="cell100 column3">{{item.gamename}}</td>
+              <td class="cell100 column4">{{item.date}}</td>
+              <td class="cell100 column3">{{item.slot}}</td>
+              <td class="cell100 column4">{{item.status}}</td>
+              <td class="cell100 column5">
+                <button class="btn btn-danger btn-sm me-2" (click)="remove(item.id)">delete</button>
+              <!-- <button class="btn btn-success btn-sm" *ngIf="item.status === false" (click)="verify(item.refid)">verify</button> -->
+                <!-- <i class="fa fa-times" style="color:tomato;" data-toggle="tooltip" data-placement="top" title="Cancel Order" aria-hidden="true" ></i> -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pagnation p-3" style="text-align: center;" >
+        <!-- <button class="btn" [routerLink]="['/datatables/total']" [queryParams]="{'pageNo':0,'itemsPerPage':100}">1</button>
+        <button class="btn btn-info" type="button" >Next</button> -->
+      </div>
+    </div>
+
+</div>    

@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <app-header></app-header>
+    <div class="float-end" style="color: aliceblue; cursor: pointer;"><i class="fa fa-arrow-left fa-lg"></i>&nbsp; BACK</div>
+    <div class="head text-center ">
+        <header>Exsisting Customer Booking</header>
+    </div>
+  <div class="content text-center mt-5">
+    <div class="alert alert-warning text-center" role="alert" *ngIf="errormessage">{{errormessage}}</div>
+
+ <div class="card text-center">
+     <div class="card-body text-center">
+        <form [formGroup]="customerForm" (ngSubmit)="onsubmit()">
+            <div class="input-group fontuser mb-3">
+              <input
+                type="text"
+                class="form-control input-sm"
+                placeholder=" ENTER MOBILE NUMBER"
+                formControlName="mobile"
+              />
+              <small
+              *ngIf="customerFormcontrol.mobile.invalid && isSubmitted"
+              class="error"
+              >Kindly enter mobile number
+            </small>
+            </div>
+            <button class="btn btn-lg mt-3">Fetch Customer</button>
+          </form>
+     </div>
+ </div>
+  </div>
+</div>

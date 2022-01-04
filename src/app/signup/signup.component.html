@@ -1,0 +1,104 @@
+<div class="container-fluid">
+    <app-header></app-header>
+    <!-- <div class="float-end" style="color: aliceblue; cursor: pointer">
+      <i class="fa fa-arrow-left fa-lg"></i>&nbsp; BACK
+    </div> -->
+<div class="alert alert-warning text-center" role="alert" *ngIf="errormessage">{{errormessage}}</div>
+
+    <div class="head text-center mt-1">
+      <header>Admin Registration</header>
+    </div>
+    <div class="content text-center mt-2">
+      <div class="card text-center">
+        <div class="card-body text-center">
+          <form [formGroup]="customerForm" (ngSubmit)="onsubmit()">
+            <div class="input-group fontuser mb-3">
+              <input
+                type="text"
+                class="form-control input-sm"
+                placeholder=" FULL-NAME"
+                formControlName="name"
+              />
+              <small
+                *ngIf="customerFormcontrol.name.invalid && isSubmitted"
+                class="error"
+                >FULL-NAME is required
+              </small>
+            </div>
+            <div class="input-group mb-3 fontuser">
+              <input
+                type="email"
+                class="form-control input-sm"
+                placeholder=" EMAIL-ID"
+                formControlName="email"
+              />
+              <small
+                *ngIf="customerFormcontrol.email.invalid && isSubmitted"
+                class="error"
+                >EMAIL-ID is required
+              </small>
+            </div>
+            <div class="input-group fontuser mb-3">
+              <input
+                type="password"
+                class="form-control input-sm"
+                placeholder=" Password"
+                formControlName="password"
+              />
+              <small
+                *ngIf="customerFormcontrol.password.invalid && isSubmitted"
+                class="error"
+                >Password is required
+              </small>
+            </div>
+            <div class="input-group mb-3 fontuser">
+              <input
+                type="number"
+                class="form-control input-sm"
+                placeholder=" MOBILE NUMBER"
+                formControlName="mobile"
+              />
+              <small
+                *ngIf="customerFormcontrol.mobile.invalid && isSubmitted"
+                class="error"
+                >MOBILE NUMBER is required
+              </small>
+            </div>
+          
+            <div class="input-group fontuser">
+              <input
+                type="text"
+                class="form-control input-sm"
+                placeholder=" Employee ID"
+                formControlName="empid"
+              />
+              <small
+                *ngIf="customerFormcontrol.empid.invalid && isSubmitted"
+                class="error"
+                >employee Id is required
+              </small>
+            </div>
+
+            <div class="input-group fontuser mt-3">
+              <input
+                type="text"
+                class="form-control input-sm"
+                placeholder="Arena location"
+                formControlName="arena"
+              />
+              <small
+                *ngIf="customerFormcontrol.arena.invalid && isSubmitted"
+                class="error"
+                >Arena location is required
+              </small>
+            </div>
+
+            <div class="text-center  center mt-3"></div>
+            <button class="btn btn-lg" type="submit">Register</button>
+            <a class=" col px-md-5" type="button" [routerLink]="['/signin']">Login !</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

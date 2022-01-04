@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <app-header></app-header>
+    <div class="float-end" style="color: aliceblue; cursor: pointer;"><i class="fa fa-arrow-left fa-lg"></i>&nbsp; BACK</div>
+    <div class="head text-center mt-5">
+        <header>SELECT GAME</header>
+    </div>
+  <div class="content text-center">
+    <div class="alert alert-warning text-center" role="alert" *ngIf="errormessage">{{errormessage}}</div>
+ <div class="card text-center mt-3 ">
+     <div class="card-body text-center">
+        <form [formGroup]="customerForm" (ngSubmit)="onsubmit()">
+            <div class="input-group fontuser mb-3">
+                <select class="form-select" formControlName="gamename" aria-label="Default select example">
+                  <option value="" disabled selected hidden>Choose game...</option>
+                    <option value="animalinstinct">ANIMAL INSTINCT</option>
+                    <option value="battlecove">BATTLE COVE</option>
+                  </select>
+                  <small
+                  *ngIf="customerFormcontrol.gamename.invalid && isSubmitted"
+                  class="error"
+                  >Kindly choose Game
+                </small>
+            </div>
+            <button class="btn btn-lg mt-3" type="submit">SUBMIT</button>
+          </form>
+     </div>
+ </div>
+  </div>
+</div>

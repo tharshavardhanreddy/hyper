@@ -1,0 +1,19 @@
+*,
+html {
+  margin: 0%;
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+      font-family: poppins;
+      /* background-image: url("../assets/images/logo1.png"); */
+}
+
+/* td:hover{
+  cursor: pointer;
+  background: rgb(109, 179, 245);
+} */
+
+.error{
+  padding-left: 30px;
+  padding-top: 10px;
+  color: tomato;
+  font-weight: 600;
+}

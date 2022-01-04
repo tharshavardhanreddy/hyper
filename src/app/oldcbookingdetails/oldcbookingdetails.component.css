@@ -1,0 +1,55 @@
+.container-fluid{
+    margin: 0;
+    overflow-x: hidden;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-image: url("../../assets/images/logo1.png");
+
+}
+
+header{
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: 1.7rem;
+}
+
+.content{
+    color: whitesmoke;
+}
+
+.card{
+    border: none;
+    background: none;
+}
+
+.card-body{
+    margin: auto;
+    /* width: 35%; */
+}
+
+input{
+    text-align: center;
+    padding: 15px 50px;
+}
+
+span{
+    width: 40%;
+    color: whitesmoke;
+    background: black;
+}
+
+.btn{
+    padding: 10px 40px;
+    border-radius: 20px;
+    /* width: 22%; */
+    color: whitesmoke;
+    background: black;
+}
+
+.tbtn{
+    color: whitesmoke;
+    background: black
+}

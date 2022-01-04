@@ -1,0 +1,44 @@
+<div class="big-image">
+  <div class="overlay">
+    <div class="alert alert-warning text-center" role="alert" *ngIf="errormessage">{{errormessage}}</div>
+    <div class="form">
+      <form [formGroup]="loginFormGroup" (ngSubmit)="onsubmit()">
+        <div class="input-group input-group-lg fontuser mb-3">
+          <input
+            type="email"
+            class="form-control input-sm"
+            id="floatingInput"
+            placeholder=" &nbsp; &nbsp; EMAIL ID"
+            formControlName="email"
+          />
+          <!-- <i class="fa fa-user fa-lg"></i> -->
+          <small *ngIf="loginForm.email.invalid && isSubmitted" class="error"
+            ><span *ngIf="loginForm.email.errors?.required"
+              >email is required</span
+            >
+            <span *ngIf="loginForm.email.errors?.email"
+              >email is invalid</span
+            ></small
+          >
+        </div>
+        <div class="input-group input-group-lg fontuser">
+          <input
+            type="password"
+            class="form-control input-sm"
+            id="floatingPassword"
+            placeholder=" &nbsp; &nbsp; PASSWORD"
+            formControlName="password"
+          />
+          <!-- <i class="fa fa-key fa-lg"></i> -->
+          <small *ngIf="loginForm.password.invalid && isSubmitted" class="error"
+            >Password is required
+          </small>
+        </div>
+        <div class="text-center  center mt-4">
+          <button class="btn btn-lg btn-mb" type="submit">Sign-in</button>
+          <a class=" col px-md-5" type="button" [routerLink]="['/signup']">Register Here !</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,208 @@
+<div class="container-fluid">
+    <app-header></app-header>
+    <!-- <div class="float-end" style="color: aliceblue; cursor: pointer">
+      <i class="fa fa-arrow-left fa-lg"></i>&nbsp; BACK
+    </div> -->
+    <div class="head text-center mt-2">
+      <span class="float-end" style="color: aliceblue; cursor: pointer" (click)="locat()"><i class="fa fa-arrow-left fa-lg"></i></span>
+      <span class="float-end" style="color: aliceblue; cursor: pointer"><button class="btn btn-success btn-sm me-3" (click)="buttoncl()">Create</button> </span>
+      <header class="ms-5">List of Admins</header>
+    </div>
+
+    <!-- <div class="card-body text-center mt-3">
+      <div  style="padding-bottom:10px;" >  
+        <input class="form-control" type="text" placeholder=" &nbsp; Search ......." >        
+   </div>
+      <table class="table">
+        <thead style="cursor: none;">
+          <tr>
+            <th scope="col">Admin-ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">EMP-ID</th>
+            <th scope="col">Arena</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="js-pscroll">
+          <tr>
+            <td>1234</td>
+            <td>test1</td>
+            <td>HYP001</td>
+            <td>Arena1</td>
+            <td>true</td>
+            <td>1111111111</td>
+            <td>
+              <button class="btn btn-danger btn-sm me-2">delete</button>
+              <button class="btn btn-success btn-sm" *ngIf="status === false">verify</button>
+            </td>
+          </tr>
+          <tr>
+            <td>2222</td>
+            <td>test2</td>
+            <td>HYP002</td>
+            <td>Arena2</td>
+            <td>false</td>
+            <td>2222222222</td>
+            <td>
+              <button class="btn btn-danger btn-sm me-2">delete</button>
+              <button class="btn btn-success btn-sm" *ngIf="status === true">verify</button>
+            </td>
+          </tr> 
+           <tr>
+            <td>3333</td>
+            <td>test3</td>
+            <td>HYP003</td>
+            <td>Arena3</td>
+            <td>false</td>
+            <td>3333333333</td>
+            <td>
+              <button class="btn btn-danger btn-sm me-2">delete</button>
+              <button class="btn btn-success btn-sm" *ngIf="status === true">verify</button>
+            </td>
+          </tr>
+          </tbody>
+      </table>
+    </div> -->
+    <!-- <div class="card-body "> -->
+      <div class="alert alert-warning text-center " role="alert" *ngIf="errormessage">{{errormessage}}</div>
+      <div class="card text-center mt-2" *ngIf="buttonclicked">
+        <div class="card-body  text-center">
+          <form [formGroup]="customerForm" (ngSubmit)="onsubmit()">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group  mb-3">
+                  <input
+                    type="text"
+                    class="form-control input-sm"
+                    placeholder=" FULL-NAME"
+                    formControlName="name"
+                  />
+                  <small
+                    *ngIf="customerFormcontrol.name.invalid && isSubmitted"
+                    class="error"
+                    >FULL-NAME is required
+                  </small>
+                </div>
+              
+              <div class="form-group mb-3 ">
+                <input
+                  type="email"
+                  class="form-control input-sm"
+                  placeholder=" EMAIL-ID"
+                  formControlName="email"
+                />
+                <small
+                  *ngIf="customerFormcontrol.email.invalid && isSubmitted"
+                  class="error"
+                  >EMAIL-ID is required
+                </small>
+              </div>
+              <div class="form-group  mb-3">
+                <input
+                  type="password"
+                  class="form-control input-sm"
+                  placeholder=" Password"
+                  formControlName="password"
+                />
+                <small
+                  *ngIf="customerFormcontrol.password.invalid && isSubmitted"
+                  class="error"
+                  >Password is required
+                </small>
+              </div>
+            </div>
+              <div class="col-lg-6">
+                <div class="form-group mb-3 fontuser">
+                  <input
+                    type="number"
+                    class="form-control input-sm"
+                    placeholder=" MOBILE NUMBER"
+                    formControlName="mobile"
+                  />
+                  <small
+                    *ngIf="customerFormcontrol.mobile.invalid && isSubmitted"
+                    class="error"
+                    >MOBILE NUMBER is required
+                  </small>
+                </div>
+                <div class="form-group fontuser">
+                  <input
+                    type="text"
+                    class="form-control input-sm"
+                    placeholder=" Employee ID"
+                    formControlName="empid"
+                  />
+                  <small
+                    *ngIf="customerFormcontrol.empid.invalid && isSubmitted"
+                    class="error"
+                    >employee Id is required
+                  </small>
+                </div>
+                <div class="form-group fontuser mt-3">
+                  <input
+                    type="text"
+                    class="form-control input-sm"
+                    placeholder="Arena location"
+                    formControlName="arena"
+                  />
+                  <small
+                    *ngIf="customerFormcontrol.arena.invalid && isSubmitted"
+                    class="error"
+                    >Arena location is required
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="text-center  center mt-2"></div>
+            <button class="btn btn-lg btn-success me-5" type="submit">Register</button>
+            <button class="btn btn-lg btn-danger" type="button" (click)="reversed()">Cancel</button>
+          </form>
+        </div>
+      </div>
+    <!-- </div> -->
+
+    <div class="table100 ver5 m-b-110 text-center mt-2">
+      <div class="table100-head">
+        <table>
+          <thead>
+            <tr class="row100 head text-center" >
+              <!-- <th class="cell100 column1">Admin-ID</th> -->
+              <th class="cell100 column2">Name </th>
+              <th class="cell100 column3">EMP-ID</th>
+              <th class="cell100 column4">Arena</th>
+              <th class="cell100 column3">Mobile</th>
+              <th class="cell100 column4">status</th>
+              <th class="cell100 column5">Actions</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+  
+      <div class="table100-body js-pscroll" >
+        <table>
+          <tbody *ngFor="let item of admins">
+            <tr class="row100 body text-center" >
+              <!-- <td class="cell100 column1">{{item.refid}}</td> -->
+              <td class="cell100 column2">{{item.name}}</td>
+              <td class="cell100 column3">{{item.empid}}</td>
+              <td class="cell100 column4">{{item.arena}}</td>
+              <td class="cell100 column3">{{item.mobile}}</td>
+              <td class="cell100 column4">{{item.status}}</td>
+              <td class="cell100 column5">
+                <button class="btn btn-danger btn-sm me-2" (click)="deleteadmin(item.refid)">delete</button>
+              <button class="btn btn-success btn-sm" *ngIf="item.status === false" (click)="verify(item.refid)">verify</button>
+                <!-- <i class="fa fa-times" style="color:tomato;" data-toggle="tooltip" data-placement="top" title="Cancel Order" aria-hidden="true" ></i> -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pagnation p-3" style="text-align: center;" >
+        <!-- <button class="btn" [routerLink]="['/datatables/total']" [queryParams]="{'pageNo':0,'itemsPerPage':100}">1</button>
+        <button class="btn btn-info" type="button" >Next</button> -->
+      </div>
+    </div>
+
+</div>    

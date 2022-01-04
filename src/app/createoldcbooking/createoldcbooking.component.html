@@ -1,0 +1,205 @@
+<div class="container-fluid">
+    <app-header></app-header>
+    <div class="head text-center">
+      <span
+        class="float-end me-3"
+        style="color: aliceblue; cursor: pointer"
+        (click)="locat()"
+        ><i class="fa fa-arrow-left fa-lg"></i
+      ></span>
+      <header class="ms-5">SELECT SLOT | DATE</header>
+    </div>
+    <div class="content text-center">
+      <div
+        class="alert alert-warning text-center"
+        role="alert"
+        *ngIf="errormessage"
+      >
+        {{ errormessage }}
+      </div>
+      <div class="card text-center mt-2">
+        <div class="card-body text-center">
+          <form [formGroup]="slotForm" (ngSubmit)="onsubmit()">
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="input-group mb-3">
+                  <select class="form-select" 
+                  formControlName="gamename"
+                  (change)="devent($event)"
+                  >
+                    <option value="" disabled selected hidden>Choose game...</option>
+                      <option value="animalinstinct">ANIMAL INSTINCT</option>
+                      <option value="battlecove">BATTLE COVE</option>
+                  </select>
+                  <small
+                  *ngIf="slotFormcontrol.gamename.invalid && isSubmitted"
+                  class="error"
+                  >Kindly choose Game
+                </small>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="input-group mb-3">
+                  <input
+                    type="date"
+                    [min]="minDate"
+                    class="form-control input-sm"
+                    placeholder=" SELECT DATE"
+                    formControlName="date"
+                    #sender (keyup.enter)="update2(sender.value)" (blur)="update2(sender.value)"
+                  />
+                  <small
+                    *ngIf="slotFormcontrol.date.invalid && isSubmitted"
+                    class="error"
+                    >Date is required
+                  </small>
+                </div>
+              </div>
+            
+              <div class="col-lg-4">
+                <div class="input-group mb-3">
+                  <select
+                    class="form-select"
+                    formControlName="noofpeople"
+                    aria-label="Default select example"
+                  >
+                    <option value="" disabled selected hidden>
+                      Select people...
+                    </option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                  <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" (click)="fetchslots()" >Get-Slots</button>
+                  <small
+                    *ngIf="slotFormcontrol.noofpeople.invalid && isSubmitted"
+                    class="error"
+                    >Kindly select people
+                  </small>
+                </div>
+              </div>
+            </div>
+<div class="row">
+
+              <div class="col-lg-4">
+                <div class="input-group mb-3">
+                  <select
+                    class="form-select"
+                    formControlName="slot"
+                    aria-label="Default select example"
+                    #senderr (keyup.enter)="update3(senderr.value)" (blur)="update3(senderr.value)"
+                  >
+                    <option value="" disabled selected hidden>
+                      Select Time slot...
+                    </option>
+                    <option style="text-align: center;" value="{{item.slot}}" *ngFor="let item of dropdownslot1">{{item.slot}} &nbsp; Left-{{item?.noofpeople - 4}}</option>
+                    <option  style="text-align: center;" value="{{item}}" *ngFor="let item of pusharr">{{item}}</option>
+                  </select>
+                  <small
+                    *ngIf="slotFormcontrol.slot.invalid && isSubmitted"
+                    class="error"
+                    >Kindly select time-slot
+                  </small>
+                </div>
+              </div>
+                <div class="col-lg-4 ">
+                  <div class="float-end text-center">
+                  <button class="btn btn-success " type="button" style="padding-bottom: 12px;padding-top: 12px;" for="inputGroupSelect02" (click)="fetch2price()">Fetch Price</button>
+                </div>
+              </div>
+            </div>
+
+
+  
+            <div class="price mt-3 mb-2" *ngIf="isprice">
+             <div class="card">
+                 <div class="card-body text-center">
+                     <h5>Amount to be paid</h5>
+                     <div class="row">
+                         <div class="col-lg-6">
+                             <p>Game Price</p>
+                         </div>
+                         <div class="col-lg-6">
+                             <p>800  &#8377;</p>
+                          </div>
+                     </div>
+                 </div>
+             </div>
+            </div>
+  
+            <div class="row"  *ngIf="isprice">
+                <h5>Enter Transaction Details</h5>
+              <div class="col-lg-4 ">
+                <div class="input-group mb-3">
+                  <input
+                    type="number"
+                    class="form-control input-sm"
+                    placeholder=" Enter Amount"
+                    formControlName="price"
+                  />
+                  <small
+                    *ngIf="slotFormcontrol.date.invalid && isSubmitted"
+                    class="error"
+                    >price is required
+                  </small>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="input-group mb-3">
+                  <select
+                    class="form-select"
+                    formControlName="modeofpayment"
+                    aria-label="Default select example"
+                  >
+                    <option value="" disabled selected hidden>
+                      Select Mode of Payment
+                    </option>
+                    <option value="cash">Cash</option>
+                    <option value="UPI">upi</option>
+                    <option value="card">card</option>
+                  </select>
+                  <small
+                    *ngIf="slotFormcontrol.slot.invalid && isSubmitted"
+                    class="error"
+                    >Select Mode of Payment
+                  </small>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="input-group mb-3">
+                  <input
+                    type="text"
+                    class="form-control input-sm"
+                    placeholder=" Enter Transation Id"
+                    formControlName="transactionid"
+                  />
+                  <small
+                    *ngIf="slotFormcontrol.noofpeople.invalid && isSubmitted"
+                    class="error"
+                    >Kindly enter Transaction ID
+                  </small>
+                </div>
+              </div>
+            </div>
+  
+            <div class="d-grid mt-5 mb-2 gap-5 d-md-flex justify-content-center" *ngIf="isprice">
+              <button
+                class="btn btn-lg mt-3 pb"
+                type="submit"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Submit when payment is done!"
+              >
+                Paid/SUBMIT
+              </button>
+              <button class="btn btn-danger btn-lg mt-3">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
