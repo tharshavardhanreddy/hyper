@@ -36,12 +36,10 @@ export class CreateoldcbookingComponent implements OnInit {
   
   update2(value: string) {
     this.date = value;
-    console.log(this.date)
   }
 
   update3(value: string) {
     this.slotvalue = value;
-    console.log(this.slotvalue)
   }
 
   constructor(private formbuilder: FormBuilder,private customerservice : CreatecustomerService,private activer:ActivatedRoute,
@@ -62,7 +60,6 @@ export class CreateoldcbookingComponent implements OnInit {
   timeout(){
     setTimeout(() => {
       this.firedb.object('/holdslots/'+`${this.gamename}/`+`${this.date}/`+`${this.slotvalue}`).valueChanges().subscribe((res)=>{
-        // console.log(res);
         if(res !== null){
           this.firedb.object('/holdslots/'+`${this.gamename}/`+`${this.date}/`+`${this.slotvalue}`).remove()
           alert("Booking time has been exceded, kindly book again!")
@@ -88,37 +85,20 @@ export class CreateoldcbookingComponent implements OnInit {
       status:'Booked',
       timestamp:Date.now()
     };
-    // console.log(registerData);
     const transactiondata ={
       price: this.slotFormcontrol.price.value,
       modeofpayment: this.slotFormcontrol.modeofpayment.value,
       transactionid: this.slotFormcontrol.transactionid.value,
     }
-    // console.log(transactiondata);
+
     this.cbook.createslot(registerData,transactiondata,this.customerid).then(res =>{
-      console.log(res);
       this.firedb.object('/holdslots/'+`${this.gamename}/`+`${this.date}/`+`${this.slotvalue}`).remove()
       this.route.navigate(['/oldcbookingdetail']);
     },(error) => { 
           this.errormessage = error.error.error.message;
         })
 
-        // this.firedb.object('/timeslots/'+`${this.gamename}/`+ `${this.slotFormcontrol.date.value}/`+`${this.slotFormcontrol.slot.value}`).valueChanges().subscribe((res:any) =>{
-        //   if(res === null){
-        //     this.initialvalue = 0
-        //   } else {
-        //     this.initialvalue = res              
-        //   }
-        // })
 
-        // setTimeout(() => {
-        //   if(this.initialvalue === 0){
-        //     this.firedb.object('/timeslots/'+`${this.gamename}/`+ `${this.slotFormcontrol.date.value}/`+`${this.slotFormcontrol.slot.value}`).set({slot:this.slotFormcontrol.slot.value,noofpeople: this.slotFormcontrol.noofpeople.value})
-        //   } else {
-        //     this.addpersons = parseInt(this.initialvalue.noofpeople) + parseInt(this.slotFormcontrol.noofpeople.value);
-        //     this.firedb.object('/timeslots/'+`${this.gamename}/`+ `${this.slotFormcontrol.date.value}/`+`${this.slotFormcontrol.slot.value}`).update({slot:this.slotFormcontrol.slot.value,noofpeople: this.addpersons})
-        //   }
-        // }, 1000);
         this.firedb.object('/timeslots/'+`${this.gamename}/`+ `${this.slotFormcontrol.date.value}/`+`${this.slotFormcontrol.slot.value}`).valueChanges().pipe(take(1)).subscribe((res:any) =>{
           if(res === null){
             this.firedb.object('/timeslots/'+`${this.gamename}/`+ `${this.slotFormcontrol.date.value}/`+`${this.slotFormcontrol.slot.value}`).set({slot:this.slotFormcontrol.slot.value,noofpeople: this.slotFormcontrol.noofpeople.value})
@@ -126,67 +106,105 @@ export class CreateoldcbookingComponent implements OnInit {
             this.addpersons = parseInt(res.noofpeople) + parseInt(this.slotFormcontrol.noofpeople.value);
             this.firedb.object('/timeslots/'+`${this.gamename}/`+ `${this.slotFormcontrol.date.value}/`+`${this.slotFormcontrol.slot.value}`).update({slot:this.slotFormcontrol.slot.value,noofpeople: this.addpersons})                }
         })
+
+
   }
 
   fetchslots(){
       
     this.firedb.list('/timeslots/'+`${this.gamename}/`+`${this.date}`).valueChanges().subscribe((res:any) =>{
-      // console.log(res);
       this.dropdownslot1 = res;
       console.log(this.dropdownslot1);
        this.arr3 = this.dropdownslot1.map((x:any) => x.slot);
-    //  console.log(this.arr3);
       this.arr4 = this.dropdownslot2.map((x:any) => x.slot);
-    //  console.log(this.arr4);
 
       this.pusharr = this.arr4.filter((x:any) => !this.arr3.includes(x));
-      // console.log(this.pusharr);
       
       this.maindropdown.push(...this.pusharr)
-      // console.log(this.maindropdown);
 
     })
   }
 
-  fetchprice(){
-    this.firedb.object('/holdslots/'+`${this.gamename}/`+`${this.date}/`+`${this.slotvalue}`).valueChanges().subscribe((res)=>{
-      if(res === null){
-       this.holdres = "OPEN"
-       this.isprice=true
-      } else{
-        this.holdres ="PEND"
-      }
-    })
-
-    setTimeout(() => {
-      if(this.holdres === "OPEN"){
-   this.firedb.object('/holdslots/'+`${this.gamename}/`+`${this.date}/`+`${this.slotvalue}`).set({slot:this.slotFormcontrol.slot.value,slotstatus: "PENDING"})
-   this.timeout();
-}
-else{
-        alert("This slot is in pending state!, Kindly wait/choose other slot")
-}
-    }, 1000);
 
 
 
-  }
-
-
-  fetch2price(){
-    this.firedb.object('/holdslots/'+`${this.gamename}/`+`${this.date}/`+`${this.slotvalue}`).valueChanges().pipe(take(1)).subscribe((res:any)=>{
-      console.log("holdslots :" , res);
+  // fetch2price(){
+  //   this.firedb.object('/holdslots/'+`${this.gamename}/`+`${this.date}/`+`${this.slotvalue}`).valueChanges().pipe(take(1)).subscribe((res:any)=>{
+  //     console.log("holdslots :" , res);
       
-      if(res === null){
-        this.firedb.object('/holdslots/'+`${this.gamename}/`+`${this.date}/`+`${this.slotvalue}`).set({slot:this.slotFormcontrol.slot.value,slotstatus: "PENDING"})
-        this.isprice=true
-        this.timeout();
-      }
-      else{
-      alert("This slot is in pending state!, Kindly wait/choose other slot")
-     }
-    })
+  //     if(res === null){
+  //       this.firedb.object('/holdslots/'+`${this.gamename}/`+`${this.date}/`+`${this.slotvalue}`).set({slot:this.slotFormcontrol.slot.value,slotstatus: "PENDING"})
+  //       this.isprice=true
+  //       this.timeout();
+  //     }
+  //     else{
+  //     alert("This slot is in pending state!, Kindly wait/choose other slot")
+  //    }
+  //   })
+  // }
+
+
+  fetch2price() {
+    this.firedb
+      .object(
+        '/timeslots/' +
+          `${this.gamename}/` +
+          `${this.slotFormcontrol.date.value}/` +
+          `${this.slotFormcontrol.slot.value}`
+      )
+      .valueChanges()
+      .pipe(take(1))
+      .subscribe((res: any) => {
+        if (res === null) {
+          this.initialvalue = 0;
+        } else {
+          this.initialvalue = res.noofpeople;
+        }
+        this.addpersons =
+          parseInt(this.initialvalue) +
+          parseInt(this.slotFormcontrol.noofpeople.value);
+        if (this.addpersons > 4) {
+          alert(
+            'Maximum no.of persons for this slot has-been exceeded! , Kindly choose another Slot'
+          );
+        } else {
+          this.firedb
+            .object(
+              '/holdslots/' +
+                `${this.gamename}/` +
+                `${this.date}/` +
+                `${this.slotvalue}`
+            )
+            .valueChanges()
+            .pipe(take(1))
+            .subscribe((res: any) => {
+              console.log('holdslots :', res);
+
+              if (res === null) {
+                this.firedb
+                  .object(
+                    '/holdslots/' +
+                      `${this.gamename}/` +
+                      `${this.date}/` +
+                      `${this.slotvalue}`
+                  )
+                  .set({
+                    slot: this.slotFormcontrol.slot.value,
+                    slotstatus: 'PENDING',
+                  });
+                this.isprice = true;
+                this.timeout();
+              } else {
+                alert(
+                  'This slot is in pending state!, Kindly wait/choose other slot'
+                );
+              }
+            });
+        }
+      });
   }
+
+
 
   locat(){
 this.locatio.back();

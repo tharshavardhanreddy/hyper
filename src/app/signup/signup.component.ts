@@ -30,10 +30,10 @@ export class SignupComponent implements OnInit {
       email:this.customerFormcontrol.email.value,
       password:this.customerFormcontrol.password.value
     }
-    console.log(signupdata)
+    // console.log(signupdata)
 
     this.sservice.signup(signupdata).subscribe((data) => {
-      console.log(data);
+      // console.log(data);
       if(data.localId){
         const registerData = {
           name: this.customerFormcontrol.name.value,
@@ -45,7 +45,7 @@ export class SignupComponent implements OnInit {
           status:false,
           refid:data.localId
         };
-        console.log(registerData);
+        // console.log(registerData);
         this.sservice.completesignup(registerData,data.localId)
         this.router.navigate(['/signin'])
       }

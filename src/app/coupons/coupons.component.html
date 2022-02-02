@@ -1,0 +1,119 @@
+<div class="container-fluid">
+    <app-header></app-header>
+    <div class="head text-center mt-2">
+      <span class="float-end" style="color: aliceblue; cursor: pointer" (click)="locat()"><i class="fa fa-arrow-left fa-lg"></i></span>
+      <header class="ms-5">Create Coupons</header>
+    </div>
+
+      <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="errormessage">{{errormessage}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="successmsg">{{successmsg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <div class="card text-center mt-2" >
+        <div class="card-body  text-center">
+          <form [formGroup]="customerForm" (ngSubmit)="onsubmit()">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group form-floating  mb-3">
+                  <input
+                    type="text"
+                    class="form-control input-sm"
+                    placeholder=" Coupon-Name"
+                    formControlName="couponname"
+                    id="couponname"
+                  />
+                  <label for="couponname">Enter coupon-name</label>
+                  <small
+                    *ngIf="customerFormcontrol.couponname.invalid && isSubmitted"
+                    class="error"
+                    >Coupon-name is required
+                  </small>
+                </div>
+              
+              <div class="form-group mb-3 form-floating">
+                <input
+                type="date"
+                [min]="minDate"
+                class="form-control input-sm"
+                placeholder="Valid till"
+                formControlName="date"
+                id="date"
+              />
+              <label for="date">Coupon Valid till</label>
+                <small
+                  *ngIf="customerFormcontrol.date.invalid && isSubmitted"
+                  class="error"
+                  >Valid till date is required
+                </small>
+              </div>
+              
+            </div>
+              <div class="col-lg-6">
+                <div class="form-group form-floating  mb-3">
+                  <select
+                  class="form-select"
+                  formControlName="discount"
+                  aria-label="Default select example"
+                  id="discount"
+                >
+               
+                <option value="5%">5 %</option>
+                <option value="7%">7 %</option>
+                <option value="10%">10 %</option>
+              </select>
+              <label for="discount">Discount on this Coupon</label>
+                  <small
+                    *ngIf="customerFormcontrol.discount.invalid && isSubmitted"
+                    class="error"
+                    >Password is required
+                  </small>
+                </div>
+                <div class="form-group mb-3 form-floating">
+                  <select
+                  class="form-select"
+                  formControlName="appliedfor"
+                  aria-label="Default select example"
+                  id="appliedfor"
+                >
+                
+                  <option value="food">Food</option>
+                  <option value="ticket">Ticket</option>
+                  <option value="foodandticket">Food and Ticket</option>
+                </select>
+                <label for="appliedfor">Coupon applied for...</label>
+                  <small
+                    *ngIf="customerFormcontrol.appliedfor.invalid && isSubmitted"
+                    class="error"
+                    >Kindly select coupon is applied for ...
+                  </small>
+                </div>
+              </div>
+              <div class="form-group form-floating mt-2 mb-3">
+                <input
+                  type="textarea"
+                  class="form-control input-sm"
+                  placeholder=" Coupon-Name"
+                  formControlName="description"
+                  id="description"
+                />
+                <label for="description">Description about Coupon ...</label>
+                <small
+                  *ngIf="customerFormcontrol.description.invalid && isSubmitted"
+                  class="error"
+                  >Coupon-name is required
+                </small>
+              </div>
+            </div>
+            <div class="text-center  center mt-2"></div>
+            <button class="btn btn-lg btn-success me-5" type="submit">Create</button>
+            <button class="btn btn-lg btn-danger" type="button" (click)="reversed()">Cancel</button>
+          </form>
+        </div>
+      </div>
+    <!-- </div> -->
+
+
+</div>    
+

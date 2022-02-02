@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CreatecustomerService } from '../createcustomer.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-choosegame',
@@ -14,7 +15,7 @@ export class ChoosegameComponent implements OnInit {
   isSubmitted = false;
   errormessage:any
   constructor(private formbuilder: FormBuilder,private customerservice : CreatecustomerService,
-    private route:Router, private localStorageService:LocalstorageService
+    private route:Router, private localStorageService:LocalstorageService, private locatio:Location
     ) { }
     customerID = this.localStorageService.getlocalid();
     mobile = this.localStorageService.getMobile();
@@ -30,7 +31,7 @@ export class ChoosegameComponent implements OnInit {
       customerID:this.customerID,
       mobile:this.mobile
     };
-    console.log(registerData,this.customerID);
+    // console.log(registerData,this.customerID);
     this.customerservice.chooseGame(registerData,this.customerID).then((res) =>{
       // console.log(res);
       this.route.navigate(['createcustomer/slot'],{ queryParams: {game:this.customerFormcontrol.gamename.value}})
@@ -38,6 +39,14 @@ export class ChoosegameComponent implements OnInit {
       this.errormessage = error.error.error.message;
       })
   }
+
+  locat(){
+    this.locatio.back();
+        }
+
+ cancel(){
+  this.route.navigate(['/controlpanel'])
+}      
 
   private _initForm(){
     this.customerForm = this.formbuilder.group({

@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocalstorageService } from '../localstorage.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Component({
   selector: 'app-bookingdetails',
@@ -17,8 +18,9 @@ export class BookingdetailsComponent implements OnInit {
   data:any;
   number:any;
   id:any;
+  bookingid:any;
   constructor(private sharedservice: SharedServiceService,private localStorageService:LocalstorageService,
-    private activer:ActivatedRoute, private custservice:CreatecustomerService,private route:Router) { }
+    private activer:ActivatedRoute, private custservice:CreatecustomerService,private route:Router,private firedb: AngularFireDatabase) { }
   ticketid = this.localStorageService.getticketid();
 
   ngOnInit(): void {
@@ -26,6 +28,7 @@ export class BookingdetailsComponent implements OnInit {
     this.activer.queryParams.subscribe(params =>{
       this.number=params.number;
       // console.log(this.number);
+      this.bookingid = params?.bookingid
       
     })
 
@@ -35,7 +38,12 @@ export class BookingdetailsComponent implements OnInit {
       //  console.log(this.mobile);
        this.data = this.mobile[0];
       })
-    }else{
+    }else if(this.bookingid){
+    this.firedb.object('/bookings/'+`${this.bookingid}`).valueChanges().subscribe(res => {
+    this.data = res;
+    })
+    }
+    else{
       this.custservice.fetchsinglebookingdetail().subscribe(res =>{
         // console.log(res);
       this.data = res;

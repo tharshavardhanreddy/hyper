@@ -25,11 +25,11 @@ export class SinginComponent implements OnInit {
     console.log(this.loginFormGroup.value.email,this.loginFormGroup.value.password)
     if (this.loginFormGroup.invalid) return;
 this.sservice.signIn(this.loginFormGroup.value.email,this.loginFormGroup.value.password).subscribe(data =>{
-console.log(data)
+// console.log(data)
 if(data.localId){
   this.localStorageService.setLocalid(data.localId);
   this.sservice.checksignin(data.localId).subscribe((res:any) =>{
-    console.log(res);
+    // console.log(res);
     if(res.status === true){
       this.localStorageService.setrole(res.role);
    this.router.navigate(['/controlpanel']) 

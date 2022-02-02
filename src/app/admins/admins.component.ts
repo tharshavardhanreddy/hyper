@@ -36,7 +36,7 @@ export class AdminsComponent implements OnInit {
 
   private _listofadmins(){
     this.sservice.listofAdmins().subscribe((data: any) =>{
-      console.log(data);
+      // console.log(data);
 this.admins = data
     })
   }
@@ -59,7 +59,7 @@ this.sservice.verifyAdmin(id)
     console.log(signupdata)
 
     this.sservice.signup(signupdata).subscribe((data) => {
-      console.log(data);
+      // console.log(data);
       if(data.localId){
         const registerData = {
           name: this.customerFormcontrol.name.value,
@@ -70,12 +70,12 @@ this.sservice.verifyAdmin(id)
           status:false,
           refid:data.localId
         };
-        console.log(registerData);
+        // console.log(registerData);
         this.sservice.completesignup(registerData,data.localId)
         this.buttonclicked = false;
       }
     },(error) => { 
-        console.error(error);
+        // console.error(error);
         this.errormessage = error.error.error.message;
       })
   }

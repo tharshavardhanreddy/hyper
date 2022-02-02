@@ -1,11 +1,13 @@
 <div class="container-fluid">
     <app-header></app-header>
-    <div class="float-end" style="color: aliceblue; cursor: pointer;"><i class="fa fa-arrow-left fa-lg"></i>&nbsp; BACK</div>
+    <div class="float-end" style="color: aliceblue; cursor: pointer;"><i class="fa fa-arrow-left fa-lg" (click)="locat()"></i>&nbsp; </div>
     <div class="head text-center ">
         <header>Exsisting Customer Booking</header>
     </div>
-  <div class="content text-center mt-5">
-    <div class="alert alert-warning text-center" role="alert" *ngIf="errormessage">{{errormessage}}</div>
+  <div class="content text-center ">
+    <div class="alert alert-warning text-center alert-dismissible" role="alert" *ngIf="errormessage">{{errormessage}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 
  <div class="card text-center">
      <div class="card-body text-center">
@@ -23,9 +25,18 @@
               >Kindly enter mobile number
             </small>
             </div>
-            <button class="btn btn-lg mt-3">Fetch Customer</button>
+            
+            <div class="d-grid mt-5 mb-2 gap-5 d-md-flex justify-content-center">
+              <button type="submit" class="btn btn-dark" (click)="fetchclist()">
+                Fetch-Details
+              </button>
+              <button class="btn btn-dark" type="submit">Book</button>
+            </div>
+           
           </form>
      </div>
  </div>
   </div>
 </div>
+
+

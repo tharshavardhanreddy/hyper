@@ -17,7 +17,7 @@ export class SharedServiceService {
     searchparams =searchparams.append('Key',this.key);
 
     return this.http.post<any>(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAUfhn-bzN96eJM2nT5NJyIKWayKiEr_V0`,
+      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAAfCQzMt5soasSimcMc3KkEJEvDrU8eF4`,
       { email, password }
     );
   }
@@ -36,7 +36,7 @@ export class SharedServiceService {
 
   signup(data:any){
     return this.http.post<any>(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAUfhn-bzN96eJM2nT5NJyIKWayKiEr_V0`,
+      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAAfCQzMt5soasSimcMc3KkEJEvDrU8eF4`,
       data
     );
   }
@@ -85,4 +85,9 @@ return this.firedb.object('/bookings/'+`${id}`).valueChanges();
   //   appId: "1:738926178169:web:e08529dde351490c43c9a8",
   //   measurementId: "G-8CTQSCF0H3"
   // };
+
+  createCoupons(coupondata:any,id:any){
+
+    return this.firedb.object('/coupons/'+`${id}`).set(coupondata)
+  }
 }

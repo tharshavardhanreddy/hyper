@@ -29,7 +29,7 @@ this.cservice.fetchDetailsfromMobile().subscribe(data => {
 
   remove(id :any){
 this.cservice.removeticketid(id).then((res:any) =>{
-  console.log(res);
+  // console.log(res);
 })
   }
 

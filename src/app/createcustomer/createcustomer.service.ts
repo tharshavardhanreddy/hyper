@@ -13,6 +13,7 @@ export class CreatecustomerService {
   // APIURL = environment.apiURL;
   newticketid :any;
   mathnumber:any;
+  CCID:any;
   constructor(private http: HttpClient,private firedb : AngularFireDatabase,private localStorageService:LocalstorageService) { }
 
 
@@ -42,6 +43,7 @@ export class CreatecustomerService {
           ticketid:this.mathnumber,
         }       
         console.log(data,customerID);
+        this.CCID = customerID
         this.firedb.object('/customers/'+`${customerID}`+'/tickets/'+`${this.mathnumber}`).set({ticketid:this.mathnumber}).then(res =>{
          this.newticketid =this.mathnumber
           console.log(this.newticketid);
@@ -49,6 +51,15 @@ export class CreatecustomerService {
       })
     })
    } 
+
+
+   cancelBooking(){
+    console.log(this.newticketid);
+    console.log(this.CCID);
+      this.firedb.object('/bookings/'+`${this.newticketid}`).remove()
+      this.firedb.object('/customers/'+`${this.CCID}`+'/tickets/'+`${this.newticketid}`).remove()
+  
+   }
 
 
    createslot(slotdata: any,transactiondata:any){

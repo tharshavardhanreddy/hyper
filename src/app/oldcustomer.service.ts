@@ -76,4 +76,8 @@ export class OldcustomerService {
     return this.firedb.object('/bookings/'+`${this.newticketid}`).valueChanges()
   }
 
+  fetchDetailsfromMobile(){
+    return this.firedb.list('/bookings',ref => ref.orderByChild('timestamp')).valueChanges()
+  }
+
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalstorageService } from 'src/app/localstorage.service';
 import { CreatecustomerService } from '../createcustomer.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-otp',
@@ -16,7 +17,7 @@ export class OtpComponent implements OnInit {
   id:any;
   errormessage:any
   successmessage:any
-  constructor(private formbuilder: FormBuilder,private customerservice : CreatecustomerService,
+  constructor(private formbuilder: FormBuilder,private customerservice : CreatecustomerService, private locatio:Location,
     private route:Router, private localStorageService:LocalstorageService,private activer:ActivatedRoute
     ) { }
     mobile = this.localStorageService.getMobile();
@@ -43,6 +44,10 @@ export class OtpComponent implements OnInit {
 //     })
 
   }
+
+  locat(){
+    this.locatio.back();
+        }
 
   onsubmit(){
     this.isSubmitted = true;

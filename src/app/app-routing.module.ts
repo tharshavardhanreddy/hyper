@@ -1,3 +1,4 @@
+import { CouponsComponent } from './coupons/coupons.component';
 import { OldcbookingdetailsComponent } from './oldcbookingdetails/oldcbookingdetails.component';
 import { CreateoldcbookingComponent } from './createoldcbooking/createoldcbooking.component';
 import { OldcustomerComponent } from './oldcustomer/oldcustomer.component';
@@ -10,6 +11,7 @@ import { BookingdetailsComponent } from './bookingdetails/bookingdetails.compone
 import { SinginComponent } from './singin/singin.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { OldcbooklistComponent } from './oldcbooklist/oldcbooklist.component';
 
 const routes: Routes = [
   {path: '' , component:SinginComponent},
@@ -23,6 +25,9 @@ const routes: Routes = [
   {path: 'oldcbookingdetail' , component:OldcbookingdetailsComponent},
   {path: 'details' , component:DetailedbookingComponent},
   {path: 'removetoken' , component:RemovetokenComponent},
+  {path: 'cbokkinglist' , component:OldcbooklistComponent},
+  {path: 'ccoupons' , component:CouponsComponent},
+
 
   {
     path: 'controlpanel',

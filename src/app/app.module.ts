@@ -21,6 +21,8 @@ import { OldcustomerComponent } from './oldcustomer/oldcustomer.component';
 import { CreateoldcbookingComponent } from './createoldcbooking/createoldcbooking.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { OldcbookingdetailsComponent } from './oldcbookingdetails/oldcbookingdetails.component';
+import { OldcbooklistComponent } from './oldcbooklist/oldcbooklist.component';
+import { CouponsComponent } from './coupons/coupons.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { OldcbookingdetailsComponent } from './oldcbookingdetails/oldcbookingdet
     DetailedbookingComponent,
     OldcustomerComponent,
     CreateoldcbookingComponent,
-    OldcbookingdetailsComponent
+    OldcbookingdetailsComponent,
+    OldcbooklistComponent,
+    CouponsComponent
   ],
   imports: [
     BrowserModule,
